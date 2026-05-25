@@ -23,10 +23,6 @@ const App = () => {
   const [toastMessage, setToastMessage] = useState(null);
   const [showComparison, setShowComparison] = useState(false);
 
-  if (showComparison) {
-    return <ComparisonPage onBack={() => setShowComparison(false)} />;
-  }
-
   useEffect(() => {
     localStorage.setItem('zepto-cart', JSON.stringify(cart));
   }, [cart]);
@@ -84,6 +80,10 @@ const App = () => {
   const cartItems = Object.values(cart);
   const cartCount = cartItems.reduce((sum, { quantity }) => sum + quantity, 0);
   const cartTotal = cartItems.reduce((sum, { product, quantity }) => sum + product.price * quantity, 0);
+
+  if (showComparison) {
+    return <ComparisonPage onBack={() => setShowComparison(false)} />;
+  }
 
   return (
     <div style={{
