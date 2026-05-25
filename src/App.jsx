@@ -6,6 +6,7 @@ import QuickReorder from './components/QuickReorder';
 import ComfortShelf from './components/ComfortShelf';
 import CartDrawer from './components/CartDrawer';
 import Toast from './components/Toast';
+import ComparisonPage from './components/ComparisonPage';
 
 const loadCart = () => {
   try {
@@ -20,6 +21,11 @@ const App = () => {
   const [cart, setCart] = useState(loadCart);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState(null);
+  const [showComparison, setShowComparison] = useState(false);
+
+  if (showComparison) {
+    return <ComparisonPage onBack={() => setShowComparison(false)} />;
+  }
 
   useEffect(() => {
     localStorage.setItem('zepto-cart', JSON.stringify(cart));
@@ -108,11 +114,33 @@ const App = () => {
           onAdd={addToCart}
           onRemove={removeFromCart}
         />
-        <div style={{ textAlign: 'center', padding: '24px 16px', opacity: 0.6 }}>
+        <div style={{ textAlign: 'center', padding: '24px 16px 8px', opacity: 0.6 }}>
           <div style={{ fontSize: '13px', color: '#999', fontWeight: '500', marginBottom: '6px' }}>
             Late-night essentials.
           </div>
           <div style={{ fontSize: '12px', color: '#666' }}>Comfort arriving soon.</div>
+        </div>
+
+        {/* Before/After comparison link */}
+        <div style={{ textAlign: 'center', padding: '0 16px 32px' }}>
+          <button
+            onClick={() => setShowComparison(true)}
+            style={{
+              background: 'transparent',
+              border: '1.5px solid rgba(139,27,255,0.4)',
+              borderRadius: '10px',
+              padding: '10px 20px',
+              color: '#8B1BFF',
+              fontSize: '13px',
+              fontWeight: '600',
+              cursor: 'pointer',
+              transition: 'all 0.2s ease'
+            }}
+            onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(139,27,255,0.1)'; }}
+            onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; }}
+          >
+            👁 See Before vs After — Zepto at 10pm
+          </button>
         </div>
       </div>
 
