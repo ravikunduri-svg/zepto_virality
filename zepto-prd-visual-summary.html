@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zepto Comfort Mode PRD - Visual Summary</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #0f0c1d 0%, #1a0d2e 100%);
+            color: #fff;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(139, 27, 255, 0.2) 0%, rgba(139, 27, 255, 0.05) 100%);
+            border-radius: 24px;
+            border: 2px solid rgba(139, 27, 255, 0.3);
+        }
+
+        .header h1 {
+            font-size: 48px;
+            font-weight: 800;
+            color: #8B1BFF;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+
+        .header .subtitle {
+            font-size: 24px;
+            color: #999;
+            font-weight: 500;
+        }
+
+        /* Section */
+        .section {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            padding: 32px;
+            margin-bottom: 32px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #8B1BFF;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(139, 27, 255, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        /* Cards */
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(139, 27, 255, 0.5);
+            box-shadow: 0 8px 32px rgba(139, 27, 255, 0.2);
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+
+        .card-content {
+            font-size: 14px;
+            color: #999;
+            line-height: 1.6;
+        }
+
+        /* Problem Statement */
+        .problem-box {
+            background: linear-gradient(135deg, rgba(255, 77, 77, 0.15) 0%, rgba(255, 77, 77, 0.05) 100%);
+            border: 2px solid rgba(255, 77, 77, 0.3);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 16px;
+        }
+
+        .problem-title {
+            color: #ff4d4d;
+            font-weight: 700;
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        /* Solution Box */
+        .solution-box {
+            background: linear-gradient(135deg, rgba(0, 217, 126, 0.15) 0%, rgba(0, 217, 126, 0.05) 100%);
+            border: 2px solid rgba(0, 217, 126, 0.3);
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        .solution-title {
+            color: #00d97e;
+            font-weight: 700;
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px;
+            background: rgba(139, 27, 255, 0.3);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .comparison-cell {
+            background: rgba(26, 13, 46, 0.8);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .comparison-cell.header {
+            font-weight: 700;
+            font-size: 18px;
+            background: rgba(139, 27, 255, 0.3);
+        }
+
+        .comparison-cell.blinkit {
+            border-left: 3px solid #ff4d4d;
+        }
+
+        .comparison-cell.zepto {
+            border-left: 3px solid #8B1BFF;
+        }
+
+        /* Feature Priority */
+        .priority-must {
+            color: #00d97e;
+            font-weight: 700;
+            background: rgba(0, 217, 126, 0.15);
+            padding: 4px 12px;
+            border-radius: 6px;
+            display: inline-block;
+            font-size: 12px;
+        }
+
+        .priority-should {
+            color: #ffb74d;
+            font-weight: 700;
+            background: rgba(255, 183, 77, 0.15);
+            padding: 4px 12px;
+            border-radius: 6px;
+            display: inline-block;
+            font-size: 12px;
+        }
+
+        .priority-wont {
+            color: #ff4d4d;
+            font-weight: 700;
+            background: rgba(255, 77, 77, 0.15);
+            padding: 4px 12px;
+            border-radius: 6px;
+            display: inline-block;
+            font-size: 12px;
+        }
+
+        /* Metrics Box */
+        .metric {
+            background: rgba(139, 27, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(139, 27, 255, 0.3);
+        }
+
+        .metric-value {
+            font-size: 32px;
+            font-weight: 800;
+            color: #8B1BFF;
+            margin-bottom: 8px;
+        }
+
+        .metric-label {
+            font-size: 13px;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* User Flow */
+        .flow-step {
+            position: relative;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            border-left: 4px solid #8B1BFF;
+            margin-bottom: 16px;
+        }
+
+        .flow-number {
+            position: absolute;
+            left: -18px;
+            top: 16px;
+            width: 36px;
+            height: 36px;
+            background: #8B1BFF;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .flow-title {
+            font-weight: 700;
+            margin-bottom: 8px;
+            margin-left: 24px;
+        }
+
+        .flow-content {
+            color: #999;
+            font-size: 14px;
+            margin-left: 24px;
+        }
+
+        /* Tags */
+        .tag {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            margin: 4px;
+            background: rgba(139, 27, 255, 0.15);
+            color: #8B1BFF;
+            border: 1px solid rgba(139, 27, 255, 0.3);
+        }
+
+        .tag.negative {
+            background: rgba(255, 77, 77, 0.15);
+            color: #ff4d4d;
+            border: 1px solid rgba(255, 77, 77, 0.3);
+        }
+
+        .tag.positive {
+            background: rgba(0, 217, 126, 0.15);
+            color: #00d97e;
+            border: 1px solid rgba(0, 217, 126, 0.3);
+        }
+
+        /* Insights Grid */
+        .insight-card {
+            background: linear-gradient(135deg, rgba(139, 27, 255, 0.08) 0%, rgba(139, 27, 255, 0.02) 100%);
+            border: 2px solid rgba(139, 27, 255, 0.2);
+            border-radius: 16px;
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .insight-number {
+            position: absolute;
+            top: -10px;
+            right: 16px;
+            font-size: 72px;
+            font-weight: 900;
+            color: rgba(139, 27, 255, 0.1);
+        }
+
+        .insight-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+
+        .insight-content {
+            font-size: 14px;
+            color: #999;
+        }
+
+        /* Feature Showcase */
+        .feature-showcase {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            padding: 24px;
+            border: 2px solid rgba(139, 27, 255, 0.2);
+            margin-bottom: 16px;
+        }
+
+        .feature-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .feature-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .feature-description {
+            color: #999;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .feature-examples {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            padding: 16px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            color: #00d97e;
+            margin-top: 12px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .grid-2, .grid-3, .grid-4 {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 32px;
+            }
+            
+            .header .subtitle {
+                font-size: 18px;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section {
+            animation: fadeIn 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🌙 Zepto Comfort Mode PRD</h1>
+            <p class="subtitle">Reducing Decision Fatigue in Emotionally Driven Quick Commerce</p>
+        </div>
+
+        <!-- Executive Summary -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">📋</span>
+                Executive Summary
+            </h2>
+            <div class="grid-2">
+                <div class="problem-box">
+                    <div class="problem-title">THE PROBLEM</div>
+                    <p>Late-night users enter Zepto in <strong>cognitively depleted states</strong> where they want fast decisions, low effort, and high confidence — but current QC experiences force excessive browsing and decision-making.</p>
+                </div>
+                <div class="solution-box">
+                    <div class="solution-title">THE OPPORTUNITY</div>
+                    <p>Instead of competing on <strong>performative virality</strong> like Blinkit, Zepto can own a durable behavioral territory: <strong>"Low-effort, high-confidence late-night convenience."</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Strategic Positioning -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">⚔️</span>
+                Strategic Positioning: Blinkit vs Zepto
+            </h2>
+            <div class="comparison-table">
+                <div class="comparison-cell header blinkit">Blinkit Strategy</div>
+                <div class="comparison-cell header zepto">Zepto Opportunity</div>
+                
+                <div class="comparison-cell blinkit">Viral</div>
+                <div class="comparison-cell zepto">Reliable</div>
+                
+                <div class="comparison-cell blinkit">Loud</div>
+                <div class="comparison-cell zepto">Calm</div>
+                
+                <div class="comparison-cell blinkit">Meme-led</div>
+                <div class="comparison-cell zepto">Habit-led</div>
+                
+                <div class="comparison-cell blinkit">Attention optimized</div>
+                <div class="comparison-cell zepto">Low-friction optimized</div>
+                
+                <div class="comparison-cell blinkit">Performative</div>
+                <div class="comparison-cell zepto">Predictable</div>
+                
+                <div class="comparison-cell blinkit">Short-term spikes</div>
+                <div class="comparison-cell zepto">Long-term retention</div>
+            </div>
+        </div>
+
+        <!-- Research Insights -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">🔬</span>
+                5 Key Research Insights
+            </h2>
+            <div class="grid-2">
+                <div class="insight-card">
+                    <div class="insight-number">1</div>
+                    <div class="insight-title">Functional Differentiation is Weakening</div>
+                    <div class="insight-content">All major QC players now offer fast delivery, discounts, broad assortment, and convenience. Speed alone is no longer a differentiator.</div>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-number">2</div>
+                    <div class="insight-title">Late-Night Ordering is Emotionally Driven</div>
+                    <div class="insight-content">Orders are driven by fatigue, reward-seeking, boredom, binge-watching, loneliness. Users want emotional comfort with minimal effort.</div>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-number">3</div>
+                    <div class="insight-title">Decision Fatigue is High at Night</div>
+                    <div class="insight-content">Late-night users have lower cognitive energy, lower patience, higher impulsivity. Current apps are too discovery-heavy for these states.</div>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-number">4</div>
+                    <div class="insight-title">Trust is a Category-Level Weakness</div>
+                    <div class="insight-content">Review analysis revealed: melted items, damaged deliveries, inconsistent ETAs, support frustration, broken promises. Confidence is critical.</div>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-number">5</div>
+                    <div class="insight-title">Virality ≠ Retention</div>
+                    <div class="insight-content">Blinkit's viral campaigns generated buzz and social amplification, but evidence for sustained retention improvement remains weak.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Target Users -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">👥</span>
+                Target User Segments
+            </h2>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-title">Primary: Urban Gen Z & Young Millennials</div>
+                    <div class="card-content">
+                        <div class="tag positive">Active 9 PM–1 AM</div>
+                        <div class="tag positive">Binge-watchers</div>
+                        <div class="tag positive">Emotionally impulsive</div>
+                        <div class="tag positive">Convenience-driven</div>
+                        <div class="tag positive">Low patience</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Secondary: Working Professionals</div>
+                    <div class="card-content">
+                        <div class="tag">Mentally exhausted post-work</div>
+                        <div class="tag">Low cognitive bandwidth</div>
+                        <div class="tag">Reward-seeking behavior</div>
+                        <div class="tag">Repeat ordering habits</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Jobs To Be Done -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">🎯</span>
+                Jobs To Be Done
+            </h2>
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-title">Functional JTBD</div>
+                    <div class="card-content">"Help me quickly find something comforting late at night <strong>without making me think too much.</strong>"</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Emotional JTBD</div>
+                    <div class="card-content">"Help me feel relaxed, rewarded, and <strong>confident that my order won't disappoint me.</strong>"</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Social JTBD</div>
+                    <div class="card-content">"Help me participate in late-night routines with friends or roommates <strong>without effort.</strong>"</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Principles -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">⚡</span>
+                4 Product Principles
+            </h2>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-title">1. Reduce Cognitive Load</div>
+                    <div class="card-content">Minimize excessive browsing, too many decisions, complex navigation.</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">2. Reliability Before Delight</div>
+                    <div class="card-content">No emotional layer should compromise SLA, delivery quality, or operational consistency.</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">3. Subtle Emotional Intelligence</div>
+                    <div class="card-content">Feel thoughtful, calming, confidence-building. NOT manipulative, overly emotional, or gimmicky.</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">4. Build Habits, Not Spikes</div>
+                    <div class="card-content">Optimize for repeat usage, consistency, low-effort routines — not short-term virality.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MVP Features -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">🚀</span>
+                MVP Feature Set (MoSCoW Prioritization)
+            </h2>
+            
+            <div class="feature-showcase">
+                <div class="feature-header">
+                    <div class="feature-name">1. Late-Night Comfort Shelf</div>
+                    <div class="priority-must">MUST HAVE</div>
+                </div>
+                <div class="feature-description">A dedicated post-10PM personalized shelf on homepage with curated comfort picks.</div>
+                <div class="feature-examples">
+                    Examples:<br>
+                    • "Midnight Comfort Picks"<br>
+                    • "Movie Night Snacks"<br>
+                    • "Quick Sweet Fix"<br>
+                    • "Under ₹199 Comfort Orders"
+                </div>
+                <p style="margin-top: 12px; color: #999; font-size: 13px;">✅ <strong>Problem Solved:</strong> Reduces browsing effort | <strong>Why MVP:</strong> Low engineering effort, high discovery impact</p>
+            </div>
+
+            <div class="feature-showcase">
+                <div class="feature-header">
+                    <div class="feature-name">2. One-Tap Repeat Comfort Orders</div>
+                    <div class="priority-must">MUST HAVE</div>
+                </div>
+                <div class="feature-description">Users can instantly reorder previous late-night comfort combinations.</div>
+                <div class="feature-examples">
+                    Examples:<br>
+                    • "Reorder Friday Night Combo"<br>
+                    • "Your Last Comfort Order"
+                </div>
+                <p style="margin-top: 12px; color: #999; font-size: 13px;">✅ <strong>Problem Solved:</strong> Reduces decision fatigue, creates habitual ordering loops</p>
+            </div>
+
+            <div class="feature-showcase">
+                <div class="feature-header">
+                    <div class="feature-name">3. Frozen-Safe Confidence Badge</div>
+                    <div class="priority-must">MUST HAVE</div>
+                </div>
+                <div class="feature-description">Visible reliability indicator for frozen products to build ordering confidence.</div>
+                <div class="feature-examples">
+                    Examples:<br>
+                    • "Frozen-safe delivery available"<br>
+                    • "High confidence cold-chain route"
+                </div>
+                <p style="margin-top: 12px; color: #999; font-size: 13px;">✅ <strong>Problem Solved:</strong> Improves trust and reduces ordering anxiety</p>
+            </div>
+
+            <div class="feature-showcase">
+                <div class="feature-header">
+                    <div class="feature-name">4. Confidence-Based ETA</div>
+                    <div class="priority-must">MUST HAVE</div>
+                </div>
+                <div class="feature-description">Replace aggressive ETA optimism with confidence-based communication.</div>
+                <div class="feature-examples">
+                    Examples:<br>
+                    • "Expected in 14–16 mins"<br>
+                    • "High delivery confidence tonight"
+                </div>
+                <p style="margin-top: 12px; color: #999; font-size: 13px;">✅ <strong>Problem Solved:</strong> Reduces disappointment gap, builds trust</p>
+            </div>
+
+            <div class="feature-showcase">
+                <div class="feature-header">
+                    <div class="feature-name">5. Lightweight Emotional Microcopy</div>
+                    <div class="priority-should">SHOULD HAVE</div>
+                </div>
+                <div class="feature-description">Subtle supportive copy that feels thoughtful without being performative.</div>
+                <div class="feature-examples">
+                    Examples:<br>
+                    • "Long day?"<br>
+                    • "Late-night essentials."<br>
+                    • "Comfort arriving soon."
+                </div>
+                <p style="margin-top: 12px; color: #999; font-size: 13px;">✅ <strong>Problem Solved:</strong> Enhances emotional tone with low risk</p>
+            </div>
+
+            <div style="margin-top: 24px; padding: 20px; background: rgba(255, 77, 77, 0.1); border-radius: 12px; border: 1px solid rgba(255, 77, 77, 0.3);">
+                <div style="font-weight: 700; margin-bottom: 12px; color: #ff4d4d;">❌ WON'T BUILD (Intentionally Avoiding):</div>
+                <div class="tag negative">Scream-style gimmicks</div>
+                <div class="tag negative">Forced social sharing</div>
+                <div class="tag negative">Over-emotional messaging</div>
+                <div class="tag negative">Heavy gamification</div>
+                <div class="tag negative">AI-heavy systems prematurely</div>
+            </div>
+        </div>
+
+        <!-- User Flow -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">🔄</span>
+                User Flow
+            </h2>
+            <div style="position: relative; padding-left: 20px;">
+                <div class="flow-step">
+                    <div class="flow-number">1</div>
+                    <div class="flow-title">User opens Zepto after 10 PM</div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-number">2</div>
+                    <div class="flow-title">Homepage adapts to Comfort Mode</div>
+                    <div class="flow-content">Comfort shelf appears with quick snacks, desserts, repeat combinations, low-effort bundles</div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-number">3</div>
+                    <div class="flow-title">User sees confidence indicators</div>
+                    <div class="flow-content">Frozen-safe badges + Confidence-based ETA messaging</div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-number">4</div>
+                    <div class="flow-title">User checks out faster</div>
+                    <div class="flow-content">Reduced browsing time, one-tap reorders available</div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-number">5</div>
+                    <div class="flow-title">Post-order reassurance</div>
+                    <div class="flow-content">"Comfort arriving soon." microcopy builds emotional connection</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Success Metrics -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">📊</span>
+                Success Metrics
+            </h2>
+            
+            <div style="text-align: center; margin-bottom: 32px;">
+                <div class="metric">
+                    <div class="metric-value">⭐ North Star Metric</div>
+                    <div class="metric-label">Repeat Late-Night Orders Per User</div>
+                    <div style="margin-top: 12px; font-size: 13px; color: #999;">(Measured over rolling 30-day windows)</div>
+                </div>
+            </div>
+
+            <div class="grid-3">
+                <div>
+                    <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 16px; color: #8B1BFF;">Behavioral Metrics</h3>
+                    <div class="card">
+                        <div class="card-content">
+                            • Repeat late-night order rate<br>
+                            • Late-night conversion rate<br>
+                            • Average browsing duration ↓<br>
+                            • Reorder usage rate
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 16px; color: #00d97e;">Trust Metrics</h3>
+                    <div class="card">
+                        <div class="card-content">
+                            • Cold-item complaint rate ↓<br>
+                            • ETA satisfaction score ↑<br>
+                            • Late-night support tickets ↓
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 16px; color: #ffb74d;">Business Metrics</h3>
+                    <div class="card">
+                        <div class="card-content">
+                            • Late-night GMV uplift<br>
+                            • Basket size uplift<br>
+                            • Dessert category frequency<br>
+                            • Retention uplift
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Experiment Design -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">🧪</span>
+                Experiment Design
+            </h2>
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-title">Experiment 1: Comfort Shelf</div>
+                    <div class="card-content">
+                        <strong>Hypothesis:</strong> Reducing browsing effort late at night increases conversion.<br><br>
+                        <strong>Test:</strong> A/B test standard homepage vs comfort-mode homepage<br><br>
+                        <strong>Success:</strong> Conversion uplift + faster checkout + increased repeat behavior
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Experiment 2: Confidence Messaging</div>
+                    <div class="card-content">
+                        <strong>Hypothesis:</strong> Confidence indicators increase frozen category conversion.<br><br>
+                        <strong>Test:</strong> Frozen-safe badges vs no badges<br><br>
+                        <strong>Success:</strong> Frozen item conversion + reduced complaints + lower refund rate
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Experiment 3: One-Tap Reorder</div>
+                    <div class="card-content">
+                        <strong>Hypothesis:</strong> Reducing decision-making increases repeat ordering frequency.<br><br>
+                        <strong>Test:</strong> Reorder feature vs standard ordering<br><br>
+                        <strong>Success:</strong> Reorder frequency + reduced session duration + higher retention
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Risks & Mitigation -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">⚠️</span>
+                Risks & Mitigation
+            </h2>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-title">🚨 Risk: Users May Not Care About Emotional Layer</div>
+                    <div class="card-content"><strong>Mitigation:</strong> Focus on convenience, simplicity, confidence — NOT emotional theatrics</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">🚨 Risk: Operational Failure Destroys Trust</div>
+                    <div class="card-content"><strong>Mitigation:</strong> Reliability gating before rollout. Fix cold-chain, ETA accuracy FIRST.</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">🚨 Risk: Over-Personalization Feels Creepy</div>
+                    <div class="card-content"><strong>Mitigation:</strong> Use lightweight contextual adaptation only. No invasive tracking.</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">🚨 Risk: Increased Homepage Complexity</div>
+                    <div class="card-content"><strong>Mitigation:</strong> Comfort Mode remains lightweight and optional. Simple UI.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Operational Dependencies -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">⚙️</span>
+                Critical Operational Dependencies
+            </h2>
+            <div style="background: rgba(255, 183, 77, 0.1); border: 2px solid rgba(255, 183, 77, 0.3); border-radius: 16px; padding: 24px;">
+                <div style="font-size: 18px; font-weight: 700; margin-bottom: 16px; color: #ffb74d;">⚠️ This product succeeds ONLY if:</div>
+                <div class="grid-2">
+                    <div class="tag positive" style="font-size: 14px; padding: 12px 20px;">✅ Late-night fulfillment reliability improves</div>
+                    <div class="tag positive" style="font-size: 14px; padding: 12px 20px;">✅ Frozen delivery quality improves</div>
+                    <div class="tag positive" style="font-size: 14px; padding: 12px 20px;">✅ ETA accuracy improves</div>
+                    <div class="tag positive" style="font-size: 14px; padding: 12px 20px;">✅ Cold-chain monitoring enabled</div>
+                </div>
+                <div style="margin-top: 16px; color: #ff4d4d; font-weight: 700;">Without operational consistency → All emotional trust collapses.</div>
+            </div>
+        </div>
+
+        <!-- Rollout Plan -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">🗺️</span>
+                Rollout Plan
+            </h2>
+            <div class="grid-3">
+                <div class="card" style="border-left: 4px solid #00d97e;">
+                    <div class="card-title">Phase 1: MVP Experiments</div>
+                    <div class="card-content">
+                        Launch comfort shelf, reorder shortcuts, ETA confidence, frozen-safe badges in select metro markets (Mumbai, Bangalore, Delhi NCR)
+                    </div>
+                </div>
+                <div class="card" style="border-left: 4px solid #ffb74d;">
+                    <div class="card-title">Phase 2: Behavioral Optimization</div>
+                    <div class="card-content">
+                        Improve personalization quality, recommendation relevance, repeat-order flows based on data from Phase 1
+                    </div>
+                </div>
+                <div class="card" style="border-left: 4px solid #8B1BFF;">
+                    <div class="card-title">Phase 3: Advanced Intelligence</div>
+                    <div class="card-content">
+                        Explore predictive ordering, contextual bundling, weather-aware recommendations ONLY after MVP validation
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Final Takeaway -->
+        <div class="section" style="background: linear-gradient(135deg, rgba(139, 27, 255, 0.2) 0%, rgba(139, 27, 255, 0.05) 100%); border: 2px solid rgba(139, 27, 255, 0.4);">
+            <h2 class="section-title">
+                <span class="section-icon">💡</span>
+                Final Strategic Takeaway
+            </h2>
+            <div style="text-align: center; font-size: 20px; line-height: 1.8; padding: 20px;">
+                <p style="margin-bottom: 24px; font-weight: 700; color: #fff;">The future of quick commerce may not belong to the loudest platform.</p>
+                <p style="margin-bottom: 24px; color: #999;">It may belong to the platform that:</p>
+                <div class="grid-2">
+                    <div class="tag positive" style="font-size: 16px; padding: 16px 24px;">Understands depleted user states</div>
+                    <div class="tag positive" style="font-size: 16px; padding: 16px 24px;">Reduces effort most effectively</div>
+                    <div class="tag positive" style="font-size: 16px; padding: 16px 24px;">Builds fulfillment confidence</div>
+                    <div class="tag positive" style="font-size: 16px; padding: 16px 24px;">Becomes part of nightly routines</div>
+                </div>
+                <p style="margin-top: 32px; font-size: 24px; font-weight: 700; color: #8B1BFF;">The opportunity is not "making quick commerce fun."</p>
+                <p style="margin-top: 12px; font-size: 24px; font-weight: 700; color: #00d97e;">The opportunity is making late-night convenience feel effortless, predictable, and comforting.</p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div style="text-align: center; padding: 40px; color: #666; font-size: 14px;">
+            <p>Zepto Emotional Commerce PRD | Systems Thinking Approach</p>
+            <p style="margin-top: 8px;">Focus: Habits over Hype • Trust over Virality • Retention over Spikes</p>
+        </div>
+    </div>
+</body>
+</html>
